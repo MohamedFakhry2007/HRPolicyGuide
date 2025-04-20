@@ -203,8 +203,8 @@ async def generate_response(query, relevant_docs):
         سؤال الموظف: {query}
         """
         
-        # Generate response using Gemini 2.5 Pro Preview model
-        model = genai.GenerativeModel('gemini-2.5-pro-preview-03-25')
+        # Generate response using a supported Gemini model
+        model = genai.GenerativeModel('gemini-1.5-pro')
         response = await model.generate_content_async(prompt)
         
         # Extract response text
