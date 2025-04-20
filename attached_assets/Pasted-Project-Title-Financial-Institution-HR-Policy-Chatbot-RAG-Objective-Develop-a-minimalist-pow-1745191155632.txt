@@ -1,0 +1,84 @@
+Project Title: Financial Institution HR Policy Chatbot (RAG)
+
+Objective: Develop a minimalist, powerful, and highly performant HR policy chatbot for employees of a financial institution. The chatbot will use a Retrieval-Augmented Generation (RAG) approach powered by Google's Gemini LLM to answer employee questions based on an internal policy knowledge base. The focus is on a clean, single-page UI, excellent Arabic language support, and a robust, well-structured Python backend.
+
+This project requires a professional Python developer with a strong understanding of backend development, asynchronous programming, RAG principles, and building maintainable, high-quality codebases. Experience with Flask, Poetry, and working with LLMs is essential.
+
+Core Principles & Quality Standards:
+
+World-Class Code Quality: The code must be clean, highly readable, maintainable, scalable, and follow Python best practices rigorously (PEP 8, etc.). Prioritize clarity and efficiency.
+Minimalism & Focus: The application should perform its core function exceptionally well without unnecessary features, dependencies, or complexity. "Minimal functioning app" is the goal.
+Performance: Retrieval and generation must be quick and responsive, especially considering the conversational nature of a chatbot.
+Robustness: The application should handle errors gracefully and be resilient to unexpected input or issues.
+Organization: File structure, imports, and code within files must be logically organized and easy to navigate.
+Documentation: All significant functions, classes, and modules must be clearly documented using Google-style docstrings.
+Technical Requirements:
+
+Application Architecture:
+
+Backend: Pure Python.
+Frontend: Single-page web application rendered and controlled entirely by the Flask backend. No frontend frameworks or build tools are allowed.
+UI: Modern, clean design. The only page accessible is the Chatbot interface.
+Language/Layout: Full support for Elegant Modern Arabic language throughout the UI and responses. User interface layout must be Right-to-Left (RTL).
+Dependency Management: Exclusively use Poetry for managing all project dependencies. The pyproject.toml file must be the single source of truth for dependencies and project metadata.
+Control: The entire application build, execution, and dependency management must be controlled via Poetry.
+Backend Development (Python):
+
+Framework: Flask will serve the single HTML page and handle API endpoints for chatbot interaction.
+Imports: All imports must start from the root package name declared in pyproject.toml. This ensures correct import resolution and code portability. Example: from your_package_name.module import Class.
+Asynchronous Programming: Utilize asyncio where appropriate, especially for potentially blocking operations like LLM calls or database interactions, to ensure responsiveness and efficient resource utilization.
+Function Naming: Follow standard Python naming conventions (PEP 8) for functions, variables, classes, etc. Function names should be descriptive of their action.
+Error Handling: Implement robust error handling and reporting.
+Frontend Development (HTML, CSS, JS - Served by Flask):
+
+Constraint: Strictly no frontend build tools, package managers (npm, yarn, etc.), or complex JavaScript frameworks (React, Vue, Angular).
+Implementation: Use only standard HTML5, CSS3, and vanilla JavaScript. These files will be served by Flask routes.
+Organization: Frontend assets (HTML, CSS, JS) should be logically organized within the Flask application structure (e.g., templates, static).
+Interactivity: JavaScript should be used minimally to handle sending messages to the backend API and updating the chat interface dynamically.
+RTL: Ensure the CSS correctly implements an RTL layout for the Arabic interface.
+Fonts: Use elegant, modern Arabic web fonts (e.g., via Google Fonts or similar) to enhance the UI's appearance.
+Knowledge Base (KB):
+
+Content: Create a hypothetical knowledge base consisting of 10 short distinct documents in Modern Arabic. These documents should simulate internal HR policies of a financial institution, covering a wide range of relevant topics (e.g., leave policies, benefits, code of conduct, performance reviews, training, etc.). The content should be rich enough to allow for meaningful retrieval.
+Storage: Store the knowledge base content in a lightweight, fast, and easily deployable database. Consider options like SQLite for simplicity and ease of deployment, or explore other embedded/file-based databases if more suitable. The choice should prioritize ease of setup and distribution.
+Indexing: The KB content needs to be indexed appropriately for efficient retrieval by the RAG system (e.g., using embeddings).
+Retrieval-Augmented Generation (RAG):
+
+LLM: Use Google's Gemini 2.5 Pro Preview 03-25 model for both the retrieval (generating embeddings/understanding queries) and generation (formulating responses) phases.
+Retrieval: Implement a mechanism to search the knowledge base based on the user's query and retrieve the most relevant policy document chunks or passages. This will likely involve generating embeddings for KB content and user queries and performing similarity searches.
+Generation: Use the retrieved relevant content from the KB as context for the Gemini model to generate a conversational, relevant, and accurate answer in Arabic. The tone should be helpful and appropriate for an internal HR context.
+Performance: Optimize the RAG pipeline for speed to minimize user waiting time.
+Configuration & Secrets Management:
+
+.env.example: Create a .env.example file at the project root. This file must contain placeholders for all environment variables required by the application, including the GEMINI_API_KEY and any database connection strings or paths. No actual secrets should be committed.
+Loading Configuration: Implement a mechanism to load these environment variables at application startup (e.g., using python-dotenv).
+Logging:
+
+Setup: Set up a global logger instance (ideally in a dedicated logger.py module or initialized in main.py or app.py).
+Level: Configure the logger to output messages at the DEBUG level and above.
+Output: Log messages to a file (e.g., app.log).
+Coverage: Log every significant step within the Python code. This includes function calls, data loading, API requests/responses (excluding sensitive data), database interactions, error occurrences, and key decision points in the RAG pipeline. Logs should be informative and help in debugging.
+Project Structure:
+
+Organize the codebase into logical modules and directories (e.g., your_package_name/, your_package_name/backend/, your_package_name/frontend/, your_package_name/rag/, your_package_name/database/, etc.).
+Ensure the structure is clean and reflects the application's components.
+Deliverables:
+
+A complete, functional Python application meeting all the technical requirements.
+A pyproject.toml file specifying all dependencies.
+A .env.example file with placeholders for configuration.
+The 10 hypothetical short Arabic policy documents (can be simple text files within the project).
+A clear and concise README.md file explaining how to set up and run the application using Poetry, including environment variable setup.
+Well-documented code (Google-style docstrings).
+A clean Git history reflecting logical commits.
+Success Criteria:
+
+The chatbot successfully loads and displays the single-page UI with an elegant, RTL Arabic interface.
+Users can type questions in Arabic related to the HR policies.
+The chatbot provides accurate, relevant, and conversationally toned answers in Arabic based on the provided knowledge base using the Gemini 2.5 Pro model.
+The application is fast and responsive.
+The codebase is clean, well-organized, and adheres to all specified technical requirements and quality standards.
+The application can be easily set up and run using Poetry and the provided .env.example and README.
+gemini must be used ONLY for generation not for retrieval.
+Use the least amount of libraries in the toml file, and make sure everything is compatible with python 3.12 and above.
+For retrieval, do not use vector embeddings because it required GPU and high specs pc. Either find a very simple way of vector embeddings that can run on any simple CPU personal laptop, or pass the very short 10 HR documents as variables without vectorizing them.
