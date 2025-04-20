@@ -1,0 +1,128 @@
+/* Arabic RTL specific styles */
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bs-dark);
+    color: var(--bs-light);
+}
+
+/* Chat container styles */
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    background-color: rgba(33, 37, 41, 0.6) !important;
+}
+
+/* Message styles */
+.user-message, .bot-message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    position: relative;
+}
+
+.user-message {
+    align-self: flex-start;
+}
+
+.bot-message {
+    align-self: flex-end;
+}
+
+.message-content {
+    padding: 12px 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-message .message-content {
+    background-color: var(--bs-info);
+    color: var(--bs-dark);
+    border-bottom-right-radius: 0;
+}
+
+.bot-message .message-content {
+    background-color: var(--bs-secondary);
+    color: var(--bs-light);
+    border-bottom-left-radius: 0;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Welcome message styling */
+.welcome-message {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.welcome-message .bot-message {
+    max-width: 90%;
+}
+
+.welcome-message .message-content {
+    background-color: var(--bs-info);
+    color: var(--bs-dark);
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Typing indicator */
+.typing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    min-height: 30px;
+}
+
+.dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--bs-light);
+    margin: 0 3px;
+    animation: bounce 1.3s linear infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Form styling adjustments for RTL */
+.chat-input-area textarea {
+    resize: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+
+.chat-input-area button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-message, .bot-message {
+        max-width: 90%;
+    }
+}

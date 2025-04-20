@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام مساعد سياسات الموارد البشرية</title>
+    
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    
+    <!-- Bootstrap dark theme -->
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    
+    <!-- Google Fonts - Tajawal (elegant Arabic font) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-bs-theme="dark">
+    <div class="container-fluid vh-100 d-flex flex-column">
+        <!-- Header -->
+        <header class="row py-3 bg-dark">
+            <div class="col-12 text-center">
+                <h1 class="mb-0">
+                    <i class="fas fa-robot text-info me-2"></i>
+                    نظام مساعد سياسات الموارد البشرية
+                </h1>
+                <p class="text-muted mb-0">استفسر عن سياسات المؤسسة المالية الخاصة بالموارد البشرية</p>
+            </div>
+        </header>
+        
+        <!-- Chat Container -->
+        <main class="row flex-grow-1 overflow-hidden">
+            <div class="col-lg-8 col-md-10 col-12 mx-auto d-flex flex-column h-100">
+                
+                <!-- Chat Messages Area -->
+                <div id="chat-messages" class="flex-grow-1 overflow-auto p-3 mb-3 bg-dark rounded border border-secondary">
+                    <div class="welcome-message">
+                        <div class="bot-message">
+                            <div class="message-content">
+                                <p>مرحبًا! أنا مساعد سياسات الموارد البشرية الخاص بالمؤسسة المالية.</p>
+                                <p>كيف يمكنني مساعدتك اليوم؟ يمكنك سؤالي عن سياسات الإجازات، ساعات العمل، المزايا، أو أي استفسار آخر متعلق بسياسات الموارد البشرية.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Input Form -->
+                <div class="chat-input-area mb-3">
+                    <form id="chat-form" class="d-flex">
+                        <div class="input-group">
+                            <textarea id="user-input" class="form-control" placeholder="اكتب سؤالك هنا..." rows="2" required></textarea>
+                            <button type="submit" class="btn btn-info">
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="d-none d-md-inline ms-1">إرسال</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Typing Indicator (hidden by default) -->
+                <div id="typing-indicator" class="d-none mb-3">
+                    <div class="bot-message">
+                        <div class="message-content typing">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="row py-2 bg-dark">
+            <div class="col-12 text-center">
+                <p class="text-muted mb-0">© 2023 المؤسسة المالية - نظام مساعد سياسات الموارد البشرية</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
