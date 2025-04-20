@@ -32,7 +32,7 @@ def index():
 
 
 @app.route("/api/chat", methods=["POST"])
-async def chat():
+def chat():
     """
     Handle chat API requests.
     
@@ -58,7 +58,10 @@ async def chat():
         logger.debug(f"Retrieved {len(relevant_docs)} relevant documents")
         
         # Generate response using Gemini with retrieved documents as context
-        response = await generate_response(user_message, relevant_docs)
+        import asyncio
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        response = loop.run_until_complete(generate_response(user_message, relevant_docs))
         logger.info(f"Generated response: {response[:50]}...")
         
         return jsonify({"response": response})

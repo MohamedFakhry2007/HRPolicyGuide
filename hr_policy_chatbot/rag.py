@@ -33,6 +33,15 @@ vectorizer = None
 document_vectors = None
 documents = None
 
+# Initialize the retrieval system when the module is loaded
+try:
+    logger.info("Auto-initializing retrieval system on module load")
+    if vectorizer is None or document_vectors is None or documents is None:
+        # We'll initialize on first use
+        pass
+except Exception as e:
+    logger.error(f"Error auto-initializing retrieval system: {str(e)}", exc_info=True)
+
 
 def initialize_retrieval_system():
     """
