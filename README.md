@@ -20,7 +20,7 @@ A minimalist, powerful, and highly performant HR policy chatbot for employees of
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/hr-policy-chatbot.git
+   git clone URL
    cd hr-policy-chatbot
    ```
 
@@ -41,3 +41,6 @@ A minimalist, powerful, and highly performant HR policy chatbot for employees of
 
 ## Running the application
 
+   ```
+   poetry run start
+   ```

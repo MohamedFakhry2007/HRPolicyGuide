@@ -9,9 +9,6 @@ import logging
 import google.generativeai as genai
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
 
 from hr_policy_chatbot.database import get_all_policy_documents, log_chat_interaction
 
@@ -20,13 +17,6 @@ logger = logging.getLogger(__name__)
 
 # Initialize Google Generative AI
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY", ""))
-
-# Download NLTK resources
-try:
-    nltk.download('punkt', quiet=True)
-    nltk.download('stopwords', quiet=True)
-except Exception as e:
-    logger.warning(f"Failed to download NLTK resources: {str(e)}")
 
 # TF-IDF vectorizer for document retrieval
 vectorizer = None
@@ -78,7 +68,7 @@ def initialize_retrieval_system():
 
 def preprocess_query(query):
     """
-    Preprocess a user query for retrieval.
+    Preprocess a user query for retrieval with Arabic support.
     
     Args:
         query: The user's query text.
@@ -89,18 +79,20 @@ def preprocess_query(query):
     logger.debug(f"Preprocessing query: {query}")
     
     try:
-        # Tokenize the query
-        tokens = word_tokenize(query.lower())
+        # Define Arabic stopwords
+        arabic_stopwords = {
+            'في', 'من', 'على', 'و', 'ال', 'الى', 'ما', 'هل', 'عن', 'مع',
+            'هذا', 'هذه', 'هذان', 'هؤلاء', 'هناك', 'كيف', 'اين', 'متى'
+        }
         
-        # Remove stopwords (if available)
-        try:
-            arabic_stopwords = set(stopwords.words('arabic'))
-            tokens = [token for token in tokens if token not in arabic_stopwords]
-        except:
-            logger.warning("Arabic stopwords not available, skipping stopword removal")
+        # Convert to lowercase and split into words
+        words = query.lower().split()
         
-        # Join the tokens back into a string
-        preprocessed_query = " ".join(tokens)
+        # Remove stopwords and keep only Arabic text
+        words = [w for w in words if w not in arabic_stopwords]
+        
+        # Join back into string
+        preprocessed_query = " ".join(words)
         
         logger.debug(f"Preprocessed query: {preprocessed_query}")
         return preprocessed_query

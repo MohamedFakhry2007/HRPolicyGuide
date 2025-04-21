@@ -1,0 +1,40 @@
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+*.eggs/
+
+# Virtual environment directories
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Poetry
+.poetry/
+poetry.lock
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Log files
+*.log
+
+# OS-specific files
+Thumbs.db
+Desktop.ini
+
+# Project Brief
+attached_assets/
